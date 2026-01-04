@@ -62,7 +62,7 @@ python tools/images_demo.py \
 We provide Trained Weights of our SGDDiff.
 [Download](https://pan.baidu.com/s/1qy5xVyGuj9-RIFDkrFnaYA?pwd=GZRD)
 
-### Saliency maps
+## Saliency maps
 We provide saliency maps of our SGDDiff on ORSSD，EORSSD and ORSI-4199 datasets.
 [Download](https://pan.baidu.com/s/1nq2OD2je_jqae9LOkpe0Zg)
 
