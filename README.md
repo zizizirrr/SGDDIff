@@ -15,24 +15,11 @@ PyTorch: 2.4.1+cu118 + TorchVision: 0.19.1+cu11 + OpenCV: 4.10.0 + MMCV: 1.7.2 +
 
 ## Data preparation
 This project uses three datasets for salient object detection (SOD): EORSSD, ORSSD, and ORSI-4199.  
-Download each dataset and place them under the `datasets` directory with the following structure:
+Download each dataset and organize them in the `datasets` directory as follows:  
 
-datasets/
-├── EORSSD/
-│   ├── train-images/
-│   ├── train-labels/
-│   ├── test-images/
-│   └── test-labels/
-├── ORSSD/
-│   ├── train-images/
-│   ├── train-labels/
-│   ├── test-images/
-│   └── test-labels/
-└── ORSI-4199/
-    ├── train-images/
-    ├── train-labels/
-    ├── test-images/
-    └── test-labels/
+EORSSD: train-images, train-labels, test-images, test-labels  
+ORSSD: train-images, train-labels, test-images, test-labels  
+ORSI-4199: train-images, train-labels, test-images, test-labels  
 
 Notes:
 1. Filenames of images and corresponding masks must match exactly.
