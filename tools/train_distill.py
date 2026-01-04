@@ -7,13 +7,13 @@ _base_ = [
 # Teacher Model
 # ======================
 teacher = dict(
-    type='DDP',
-    timesteps=50,
+    type='SGDDiff''
+    timesteps=10,
     randsteps=5,
     accumulation=True,
     bit_scale=0.01,
 
-    backbone=...,        # ← 直接复制你原来的
+    backbone=...,        
     neck=...,
     decode_head=...,
     auxiliary_head=...,
@@ -42,7 +42,7 @@ student = dict(
 # ======================
 # Teacher Checkpoint
 # ======================
-teacher_ckpt = 'segmentation/checkpoint/EORSSD.pth'
+teacher_ckpt = 'checkpoint/EORSSD.pth'
 
 # ======================
 # Distillation Hyper-Params
