@@ -34,7 +34,7 @@ Please download the pre-trained model weights and dataset first. Next, generate 
 Single GPU training
 ~~~python
 python tools/train_distill.py \
-    configs/EORSSD/SGDDiff_eorssd_distill.py
+    configs/EORSSD/sgd_eorssd_distill.py
 
 ~~~
 Multi-GPU training
@@ -43,7 +43,7 @@ python -m torch.distributed.launch \
   --nproc_per_node=2 \
   --use_env \
   tools/train_distill.py \
-  configs/EORSSD/SGDDiff_eorssd_distill.py
+  configs/EORSSD/sgd_eorssd_distill.py
 
 ~~~
 
@@ -53,7 +53,7 @@ python -m torch.distributed.launch \
 python tools/images_demo.py \
   --img datasets/EORSSD/test-images \
   --config configs/EORSSD/eorssd_student.py \
-  --checkpoint work_dirs/SGDDiff_eorssd_distill/best_mIoU_iter_xxxx.pth \
+  --checkpoint work_dirs/sgd_eorssd_distill/best_mIoU_iter_xxxx.pth \
   --out-dir outputs/eorssd_student
 
 ~~~
