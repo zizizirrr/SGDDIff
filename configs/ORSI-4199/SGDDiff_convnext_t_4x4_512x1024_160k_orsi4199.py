@@ -18,7 +18,7 @@ checkpoint_file = 'work_dirs/ddp_convnext_t_4x4_512x1024_160k_eorssd/best_mIoU_i
 # model settings
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
-    type='DDP',
+    type='SGDDiff',
     timesteps=4,
     bit_scale=0.01,
     pretrained=None,
