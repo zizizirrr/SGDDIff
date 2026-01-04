@@ -51,7 +51,7 @@ python -m torch.distributed.launch \
 ## Inference
 ~~~python
 python tools/images_demo.py \
-  --img /datasets/EORSSD/test-images \
+  --img datasets/EORSSD/test-images \
   --config configs/EORSSD/eorssd_student.py \
   --checkpoint work_dirs/SGDDiff_eorssd_distill/best_mIoU_iter_xxxx.pth \
   --out-dir outputs/eorssd_student
