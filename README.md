@@ -10,7 +10,7 @@ Salient object detection (SOD) in optical remote sensing images (ORSIs) presents
 <img width="1680" alt="image" src="">
 
 ## Requirements
-PyTorch: 2.4.1+cu118 + TorchVision: 0.19.1+cu11 + OpenCV: 4.10.0 + MMSegmentation: 0.29.0+
+PyTorch: 2.4.1+cu118 + TorchVision: 0.19.1+cu11 + MMSegmentation: 0.29.0+
 
 
 ## Data preparation
