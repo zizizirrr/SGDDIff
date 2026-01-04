@@ -1,5 +1,5 @@
 # =========================================================
-# Diffusion Distillation Config for EORSSD
+# Diffusion Distillation Config for ORSSD
 # Teacher + Student are BOTH diffusion models
 # =========================================================
 
