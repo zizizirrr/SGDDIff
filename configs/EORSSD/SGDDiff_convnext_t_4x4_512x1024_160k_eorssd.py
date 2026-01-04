@@ -19,7 +19,7 @@ checkpoint_file = 'checkpoint/EORSSD.pth'
 # model settings
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
-    type='DDP',
+    type='SGDDIff',
     timesteps=10,
     bit_scale=0.01,
     pretrained=None,
