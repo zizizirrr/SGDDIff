@@ -70,5 +70,5 @@ We provide saliency maps of our SGDDiff on ORSSD，EORSSD and ORSI-4199 datasets
 You can use the [evaluation tool (MATLAB version)](https://github.com/MathLee/MatlabEvaluationTools) to evaluate the above saliency maps.
 
 ## Acknowledgement
-We would like to thank the contributors to the [SGDDiff]().
+We would like to thank the contributors to the SGDDiff.
 
