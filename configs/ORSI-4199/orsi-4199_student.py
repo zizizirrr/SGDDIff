@@ -10,7 +10,7 @@ checkpoint_file = 'checkpoint/orsi-4199.pth'
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 student = dict(
-    type='DDP',
+    type='SGDDIff',
     timesteps=3,        # ✅ 少步
     randsteps=1,        # ✅ 单轨迹
     accumulation=True, # 🔥 打开，用来接收蒸馏
