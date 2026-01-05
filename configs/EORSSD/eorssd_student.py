@@ -11,9 +11,9 @@ norm_cfg = dict(type='SyncBN', requires_grad=True)
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 student = dict(
     type='SGDDiff',
-    timesteps=3,        # ✅ 少步
-    randsteps=1,        # ✅ 单轨迹
-    accumulation=True, # 🔥 打开，用来接收蒸馏
+    timesteps=3,       
+    randsteps=1,       
+    accumulation=True, #  打开，用来接收蒸馏
     bit_scale=0.01,
     backbone=dict(
         type='SwinTransformer',
