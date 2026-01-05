@@ -7,7 +7,7 @@ Salient object detection (SOD) in optical remote sensing images (ORSIs) presents
 
 
 ## Network Architecture
-<img width="1680" alt="image" src="">
+<img width="1680" alt="image" src="method/backbone.png">
 
 ## Requirements
 PyTorch: 2.4.1+cu118 + TorchVision: 0.19.1+cu11 + MMSegmentation: 0.29.0+
