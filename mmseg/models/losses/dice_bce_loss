@@ -1,0 +1,74 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from ..builder import LOSSES
+
+
+def binary_dice_loss(pred, target, valid_mask=None, smooth=1.0):
+    """
+    pred:   (N, H, W) or (N, *)
+    target: same shape
+    """
+    pred = pred.reshape(pred.shape[0], -1)
+    target = target.reshape(target.shape[0], -1)
+
+    if valid_mask is not None:
+        valid_mask = valid_mask.reshape(valid_mask.shape[0], -1)
+        pred = pred * valid_mask
+        target = target * valid_mask
+
+    intersection = (pred * target).sum(dim=1)
+    union = pred.sum(dim=1) + target.sum(dim=1)
+
+    dice = (2 * intersection + smooth) / (union + smooth)
+    return 1 - dice.mean()
+
+@LOSSES.register_module()
+class DiceBCELoss(nn.Module):
+    def __init__(self,
+                 dice_weight=1.0,
+                 bce_weight=1.0,
+                 ignore_index=255,
+                 loss_weight=1.0,         
+                 loss_name='loss_dice_bce'):
+        super().__init__()
+        self.dice_weight = dice_weight
+        self.bce_weight = bce_weight
+        self.ignore_index = ignore_index
+        self.loss_weight = loss_weight  #  保存
+        self.bce = nn.BCEWithLogitsLoss(reduction='none')
+        self._loss_name = loss_name
+
+    def forward(self, pred, target, **kwargs):
+        """
+        pred: (N, 1, H, W) logits
+        target: (N, 1, H, W) {0,1}
+        """
+
+        pred = pred.float()
+        target = target.float()
+
+        # BCE（logits 版本）
+        loss_bce = F.binary_cross_entropy_with_logits(
+            pred, target, reduction='mean'
+        )
+
+        # Dice
+        pred_sigmoid = torch.sigmoid(pred)
+        smooth = 1.0
+
+        intersection = (pred_sigmoid * target).sum(dim=(1, 2, 3))
+        union = pred_sigmoid.sum(dim=(1, 2, 3)) + target.sum(dim=(1, 2, 3))
+
+        dice_loss = 1 - (2. * intersection + smooth) / (union + smooth)
+
+        loss_dice = dice_loss.mean()
+
+        loss = loss_dice + loss_bce
+
+        return loss
+
+    @property
+    def loss_name(self):
+        return self._loss_name
+
