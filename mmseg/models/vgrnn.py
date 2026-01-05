@@ -111,7 +111,7 @@ class SS2D(nn.Module):
             nn.init.constant_(dt_proj.weight, dt_init_std)
         elif dt_init == "random":
             nn.init.uniform_(dt_proj.weight, -dt_init_std, dt_init_std)
-        else:
+        else:Relu_Linear_Attention
             raise NotImplementedError
 
         # Initialize dt bias so that F.softplus(dt_bias) is between dt_min and dt_max
@@ -426,38 +426,5 @@ class VMRNNCell(nn.Module):
         Ht = Ft * torch.tanh(Ct) # 更新隐藏状态h_T
 
         return Ht, (Ht, Ct)
-
-
-
-if __name__ == '__main__':
-
-
-
-    # (B,L,C)   B:batchsize; L:序列长度/图像patch序列; C:通道数量
-    # x1 = torch.randn(1,196,64).to(device)
-
-    x2 = torch.randn(4, 8192, 96).to(device)  # 4, 96, 64, 128
-
-    # hidden_states = (torch.randn(1, 196, 64).to(device),torch.randn(1, 196, 64).to(device)) # (h_t, c_t)
-
-    # hidden_states2 = (torch.randn(4, 8192, 96).to(device), torch.randn(4, 8192, 96).to(device))  # (h_t, c_t)
-    hidden_states2 = ()
-
-    # Model = VMRNNCell(hidden_dim=64,
-    #                             input_resolution=(14, 14),
-    #                             depth=1, drop=0.,
-    #                             attn_drop=0., drop_path=0.1,
-    #                             norm_layer=nn.LayerNorm, d_state=16).cuda()  # input_resolution在这里是指划分patch后的图像分辨率, 以patch_siz=16划分,划分完之后图像是14*14,也就是196个patch
-    Model2 = VMRNNCell(hidden_dim=96,
-                      input_resolution=(64, 128),
-                      depth=1, drop=0.,
-                      attn_drop=0., drop_path=0.1,
-                      norm_layer=nn.LayerNorm,
-                      d_state=16).cuda()  # input_resolution在这里是指划分patch后的图像分辨率, 以patch_siz=16划分,划分完之后图像是14*14,也就是196个patch
-
-    # x,hidden_state  = Model(x1,hidden_states) # (B,L,C)-->(B,L,C)
-
-    x_, hidden_state2 = Model2(x2, None)  # (B,L,C)-->(B,L,C)
-    print(x_.shape)
 
 
