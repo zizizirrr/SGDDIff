@@ -47,7 +47,7 @@ class LearnedSinusoidalPosEmb(nn.Module):
 
 
 @SEGMENTORS.register_module()
-class DDP(EncoderDecoder):
+class SGDDiff(EncoderDecoder):
     """Encoder Decoder segmentors.
     EncoderDecoder typically consists of backbone, decode_head, auxiliary_head.
     Note that auxiliary_head is only used for deep supervision during training,
